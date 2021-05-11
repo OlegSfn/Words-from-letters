@@ -78,7 +78,7 @@ def GeneratingAllVariants(wordToFind, foundWords, whenSeek, printWordWhenFound):
         percents = (x / fac(len(wordToFind))) * 100
 
         if(percents % whenSeek == 0):
-            FileSeeking(wordToFind, list(set(words)), foundWords, printWordWhenFound)
+            FileSeeking(wordToFind, set(words), foundWords, printWordWhenFound)
             words.clear()
 
 
@@ -94,14 +94,14 @@ def GeneratingHalfVariants(wordToFind, foundWords, whenSeek, printWordWhenFound,
         if(whenSeek == 0):
             if(len(words) > 10000000 - 1 or percents % 2 == 0):
                 print("Просмотрено " + color.green + str(x) + color.end + " слов")
-                FileSeeking(wordToFind, list(set(words)), foundWords, printWordWhenFound, queue)
+                FileSeeking(wordToFind, set(words), foundWords, printWordWhenFound, queue)
                 words.clear()
         else:
             if (percents % (whenSeek / 2) == 0):
                 print("Создано " + color.green + str(int(percents)) + color.end + "% вариантов")
 
             if (percents % (whenSeek) == 0):
-                FileSeeking(wordToFind, list(set(words)), foundWords, printWordWhenFound, queue)
+                FileSeeking(wordToFind, set(words), foundWords, printWordWhenFound, queue)
                 words.clear()
 
         if(percents == 100):
